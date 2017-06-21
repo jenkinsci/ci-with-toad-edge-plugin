@@ -1,0 +1,26 @@
+<div>
+  <p>
+  Specify input folder/file that will be used as target side input for baseline compare. Following inputs are expected.
+  <ul>
+	  <li>Database - input is exported connection file</li>
+	  <li>File System Synchronization - input is folder mapped through Toad Edge file system synchronization</li>
+	  <li>Baseline - input is baseline snapshot file</li>
+  </ul>
+  </p>  
+  </br>
+  </br>
+  <p>
+	  Folder/file location must be specified as:
+	  <ul>
+		  <li>
+		  Absolute path to location on your Jenkins master node
+		  </li>
+		  <li>
+		  Relative path to your project's workspace. Either starting with ${WORKSPACE} prefix. i.e. ${WORKSPACE}dir or without prefix i.e. dir. 
+		  </li>
+		  <li>
+		  Relative path to your job's run root directory. It must start with ${JOB_ROOT_DIR} prefix. i.e. ${JOB_ROOT_DIR}dir.
+		  </li>
+	  </ul>
+  </p>
+</div>

@@ -1,0 +1,10 @@
+<?jelly escape-by-default='true'?>
+<j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler" xmlns:d="jelly:define" xmlns:l="/lib/layout" xmlns:t="/lib/hudson" xmlns:f="/lib/form">
+	
+	<f:entry title="SQL script: " field="in">
+	    <f:textbox  default=""/>
+	</f:entry>
+	<f:entry title="Target connection file: " field="out" >
+	  <f:textbox  default=""/>
+	</f:entry>
+</j:jelly>

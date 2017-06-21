@@ -1,0 +1,16 @@
+<?jelly escape-by-default='true'?>
+<j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler" xmlns:d="jelly:define" xmlns:l="/lib/layout" xmlns:t="/lib/hudson" xmlns:f="/lib/form">
+    
+    <l:layout title="${it.owner.fullDisplayName} CompareHtmlReport">
+    	<l:header>
+    		<script src="${rootURL}/plugin/ci-with-toad-edge/tee-compare.js"></script>
+   			<link rel="stylesheet" type="text/css" href="${rootURL}/plugin/ci-with-toad-edge/tee-compare.css"></link>
+   			<link rel="stylesheet" type="text/css" href="${rootURL}/plugin/ci-with-toad-edge/tee-compare-navigation.css"></link>
+   		</l:header>
+        <l:main-panel>
+            <div id="toad_compare_report">
+            </div>
+            <script>drawAll();</script>
+        </l:main-panel>
+    </l:layout>
+</j:jelly>

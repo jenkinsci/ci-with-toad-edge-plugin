@@ -1,0 +1,22 @@
+<div>
+	<p>
+  	Specify path to input folder for generating SQL change script. This folder should contain result of previously executed "Run Compare" build step. 
+  	</p>
+  	</br>
+	</br>
+  	</br>
+  	<p>
+	  	Folder location must be specified as:
+	  	<ul>
+		  	<li>
+		  	Absolute path to location on your Jenkins master node
+		  	</li>
+		  	<li>
+		  	Relative path to your project's workspace. Either starting with ${WORKSPACE} prefix. i.e. ${WORKSPACE}dir or without prefix i.e. dir. 
+		  	</li>
+		  	<li>
+		  	Relative path to your job's run root directory. It must start with ${JOB_ROOT_DIR} prefix. i.e. ${JOB_ROOT_DIR}dir.
+		  	</li>
+	  	</ul>
+  	</p>
+</div>

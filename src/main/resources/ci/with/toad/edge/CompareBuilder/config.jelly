@@ -1,0 +1,16 @@
+<?jelly escape-by-default='true'?>
+<j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler" xmlns:d="jelly:define" xmlns:l="/lib/layout" xmlns:t="/lib/hudson" xmlns:f="/lib/form">
+	
+	<f:entry title="Source input file/folder: " field="srcInputFileOrFolder" >
+	  <f:textbox  default=""/>
+	</f:entry>
+	<f:entry title="Target input file/folder: " field="tgtInputFileOrFolder" >
+	  <f:textbox  default=""/>
+	</f:entry>
+	<f:entry title="Config file: " field="configFile" >
+	  <f:textbox/>
+	</f:entry>
+	<f:entry title="Output folder: " field="outputFolder">
+	  <f:textbox default=""/>
+	</f:entry>   
+</j:jelly>

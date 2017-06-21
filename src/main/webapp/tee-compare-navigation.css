@@ -1,0 +1,139 @@
+/* navigation table */
+
+.mTable
+{
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+}
+
+.mRow
+{
+    display: table-row;
+    vertical-align: top;
+
+}
+
+.mCol1, .mCol2
+{
+    display: table-cell;
+    vertical-align: top;
+    padding: 0px;
+    margin: 0px;
+    height: 100%;
+}
+
+.mCol1
+{
+    width: 250px;
+    padding: 0px;
+    font-size: 12px;
+    border-right: 1px solid #ccc;
+    background: #fff;
+}
+
+.sideItem
+{
+    color: #000;
+    font-weight: normal;
+    list-style-type: none;
+    padding-left: 20px;
+}
+
+.statusDiff
+{
+    background: url(img/compare-status-different.png) 0px 2px no-repeat;
+}
+
+.statusSourceOnly
+{
+    background: url(img/compare-status-only-in-source.png) 0px 2px no-repeat;
+}
+
+.statusTargetOnly
+{
+    background: url(img/compare-status-only-in-target.png) 0px 2px no-repeat;
+}
+
+.statusMapped
+{
+	background: url(img/compare-status-mapped.png) 0px 2px no-repeat;
+}
+
+.link
+{
+    color: #000 !important;
+    text-decoration: none !important;
+    display: block;
+    border-radius: 4px;
+    padding: 1px 4px;
+    margin: 2px;
+    border: 1px solid transparent;
+}
+
+.link:hover
+{
+    text-decoration: underline !important;
+}
+
+.linkSelected
+{
+    color: #007DB8 !important;
+    background: #fff;
+    text-decoration: underline;
+    display: block;
+    border-radius: 4px;
+    padding: 1px 4px;
+    margin: 2px;
+    border: 1px solid transparent;
+}
+
+.leftNavig
+{
+    overflow: auto;
+    padding: 10px 10px 0px 10px;
+    margin: 0px;
+}
+
+/* main navigation */
+.mainItem
+{
+    color: white;
+    list-style-type: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-right: 15px;
+}
+
+.mainLink
+{
+    color: #000 !important;
+    text-decoration: none !important;
+    display: block;
+    border-bottom: 4px solid #fff;
+    padding: 5px 0px 2px 0px;
+}
+
+.mainLink:hover
+{
+    color: #6BACDE;
+    border-bottom: 4px solid #6BACDE;
+}
+
+.mainLinkSelected
+{
+    color: #007DB8 !important;
+    background: #fff;
+    text-decoration: none !important;
+    display: block;
+    padding: 5px 0px 2px 0px;
+    border-bottom: 4px solid #007DB8;
+
+}
+
+.mainLinkSelected:hover
+{
+    color: #6BACDE;
+    border-bottom: 4px solid #6BACDE;
+
+}
