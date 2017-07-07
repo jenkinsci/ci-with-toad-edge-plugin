@@ -28,6 +28,15 @@
 
 	<name>Continuous Integration with Toad Edge</name>
 	<description>Allows users to automate database lifecycle management operations.</description>
+	<url>https://wiki.jenkins.io/display/JENKINS/Continuous+Integration+With+Toad+Edge+Plugin</url>
+	
+	<developers>
+	    <developer>
+	      <id>pchudani</id>
+	      <name>Petr Chudanic</name>
+	      <email>petr.chudanic@quest.com</email>
+		</developer>
+	</developers>
 
 	<licenses>
 		<license>
