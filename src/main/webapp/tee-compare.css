@@ -99,6 +99,8 @@ ul
 .leftDirection
 {
     direction: ltr;
+    overflow-x: scroll;
+    overflow-y: hidden;
 }
 
 .block
