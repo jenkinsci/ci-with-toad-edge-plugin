@@ -67,7 +67,7 @@ public class CompareBuilder extends Builder {
 	private String outputFolder;
 	private String srcInputFileOrFolder;
 	private String tgtInputFileOrFolder;
-	private File configFile;
+	private String configFile;
 	private static final String SOURCE = "IN_SOURCE";
 	private static final String TARGET = "IN_TARGET";
 	private static final String CONFIG = "CONFIG";
@@ -77,7 +77,7 @@ public class CompareBuilder extends Builder {
 	// "DataBoundConstructor"
 	@DataBoundConstructor
 	public CompareBuilder(String outputFolder, String srcInputType, String tgtInputType, String srcInputFileOrFolder,
-			String tgtInputFileOrFolder, File configFile) {
+			String tgtInputFileOrFolder, String configFile) {
 		this.outputFolder = outputFolder;
 		this.srcInputFileOrFolder = srcInputFileOrFolder;
 		this.tgtInputFileOrFolder = tgtInputFileOrFolder;
@@ -112,7 +112,7 @@ public class CompareBuilder extends Builder {
 	 * @return Configuration file location. used from the <tt>config.jelly</tt>
 	 *         to display on build step.
 	 */
-	public File getConfigFile() {
+	public String getConfigFile() {
 		return configFile;
 	}
 
@@ -155,7 +155,9 @@ public class CompareBuilder extends Builder {
 		arguments.put("-in_source", getTmpInSource(build).toURI().getPath());
 		arguments.put("-in_target", getTmpInTarget(build).toURI().getPath());
 		arguments.put("-out", getTmpOutput(build).toURI().getPath());
-		arguments.put("-settings", getTmpConfig(build).toURI().getPath());
+		if (configFile != null && !configFile.isEmpty()) {
+			arguments.put("-settings", getTmpConfig(build).toURI().getPath());
+		}
 		arguments.put("-compare", "");
 
 		boolean result = (ProcessLauncher.exec(arguments, build, launcher, listener) == 0);
@@ -197,7 +199,7 @@ public class CompareBuilder extends Builder {
 			throws IOException, InterruptedException {
 		FilePath sourceInput = FileUtils.getFilePath(build, srcInputFileOrFolder);
 		FilePath targetInput = FileUtils.getFilePath(build, tgtInputFileOrFolder);
-		FilePath config = new FilePath(configFile);
+		FilePath config = FileUtils.getFilePath(build, configFile);
 
 		if (sourceInput.isDirectory()) {
 			FilePath workspaceSource = getTmpInSource(build);
@@ -231,12 +233,14 @@ public class CompareBuilder extends Builder {
 					new Localizable(ResourceBundleHolder.get(MainConfiguration.class), "CopyingFinished").toString());
 		}
 
-		FilePath workspaceConfig = getTmpConfig(build);
-		listener.getLogger().println(new Localizable(ResourceBundleHolder.get(MainConfiguration.class), "CopyingXtoY",
-				config, workspaceConfig).toString());
-		config.copyTo(workspaceConfig);
-		listener.getLogger().println(
-				new Localizable(ResourceBundleHolder.get(MainConfiguration.class), "CopyingFinished").toString());
+		if (configFile != null && !configFile.isEmpty()) {
+			FilePath workspaceConfig = getTmpConfig(build);
+			listener.getLogger().println(new Localizable(ResourceBundleHolder.get(MainConfiguration.class), "CopyingXtoY",
+					config, workspaceConfig).toString());
+			config.copyTo(workspaceConfig);
+			listener.getLogger().println(
+					new Localizable(ResourceBundleHolder.get(MainConfiguration.class), "CopyingFinished").toString());
+		}
 	}
 
 	private void deleteBuildFiles(AbstractBuild<?, ?> build, BuildListener listener)
@@ -268,9 +272,12 @@ public class CompareBuilder extends Builder {
 							.toString());
 			targetInput.delete();
 		}
-		listener.getLogger().println(
-				new Localizable(ResourceBundleHolder.get(MainConfiguration.class), "DeletingX", config).toString());
-		config.delete();
+		
+		if (configFile != null && !configFile.isEmpty()) {
+			listener.getLogger().println(
+					new Localizable(ResourceBundleHolder.get(MainConfiguration.class), "DeletingX", config).toString());
+			config.delete();
+		}
 
 		FilePath output = getTmpOutput(build);
 
@@ -335,34 +342,6 @@ public class CompareBuilder extends Builder {
 							.toString());
 			if (emptyValidation != FormValidation.ok()) {
 				return emptyValidation;
-			}
-			return FormValidation.ok();
-		}
-
-		/**
-		 * Performs on-the-fly validation of the form field 'inputFile'.
-		 *
-		 * @param value
-		 *            This parameter receives the value that the user has typed.
-		 * @return Indicates the outcome of the validation. This is sent to the
-		 *         browser.
-		 *         <p>
-		 *         Note that returning {@link FormValidation#error(String)} does
-		 *         not prevent the form from being saved. It just means that a
-		 *         message will be displayed to the user.
-		 */
-		public FormValidation doCheckConfigFile(@QueryParameter String value) {
-			FormValidation emptyValidation = FormValidationUtil.doCheckEmptyValue(value,
-					new Localizable(ResourceBundleHolder.get(MainConfiguration.class), "ConfigFileLocation")
-							.toString());
-			if (emptyValidation != FormValidation.ok()) {
-				return emptyValidation;
-			}
-			File file = new File(value);
-			if (!file.exists()) {
-				return FormValidation
-						.error(new Localizable(ResourceBundleHolder.get(MainConfiguration.class), "FileNonExistent")
-								.toString());
 			}
 			return FormValidation.ok();
 		}
