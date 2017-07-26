@@ -20,21 +20,21 @@
 		<java.level>8</java.level>
 		<!-- Jenkins Test Harness version you use to test the plugin. -->
 		<!-- For Jenkins version >= 1.580.1 use JTH 2.x or higher. -->
-		<jenkins-test-harness.version>2.13</jenkins-test-harness.version>      
-   		<timestamp>${maven.build.timestamp}</timestamp>
-   		<maven.build.timestamp.format>yyyy-MM-dd-HH-mm</maven.build.timestamp.format>
+		<jenkins-test-harness.version>2.13</jenkins-test-harness.version>
+		<timestamp>${maven.build.timestamp}</timestamp>
+		<maven.build.timestamp.format>yyyy-MM-dd-HH-mm</maven.build.timestamp.format>
 
 	</properties>
 
 	<name>Continuous Integration with Toad Edge</name>
 	<description>Allows users to automate database lifecycle management operations.</description>
 	<url>https://wiki.jenkins.io/display/JENKINS/Continuous+Integration+With+Toad+Edge+Plugin</url>
-	
+
 	<developers>
-	    <developer>
-	      <id>pchudani</id>
-	      <name>Petr Chudanic</name>
-	      <email>petr.chudanic@quest.com</email>
+		<developer>
+			<id>pchudani</id>
+			<name>Petr Chudanic</name>
+			<email>petr.chudanic@quest.com</email>
 		</developer>
 	</developers>
 
@@ -58,6 +58,11 @@
 		</pluginRepository>
 	</pluginRepositories>
 
+	<scm>
+		<connection>scm:git:ssh://github.com/jenkinsci/ci-with-toad-edge-plugin.git</connection>
+		<developerConnection>scm:git:ssh://git@github.com/jenkinsci/ci-with-toad-edge-plugin.git</developerConnection>
+		<url>https://github.com/jenkinsci/ci-with-toad-edge-plugin</url>
+	</scm>
 
 	<profiles>
 		<profile>
@@ -115,6 +120,6 @@
 
 		</profile>
 	</profiles>
-	
+
 </project>
 
