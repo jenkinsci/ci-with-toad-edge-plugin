@@ -18,7 +18,7 @@
 /* ---------------------------------------- */
 /* Basic css */
 /* ---------------------------------------- */
-body
+#toad_compare_report
 {
     font-size: 9px;
     font-family: arial;
@@ -34,13 +34,13 @@ body
 
 }
 
-div, svg
+#toad_compare_report div, svg
 {
     margin: 0px;
     padding: 0px;
 }
 
-svg
+#toad_compare_report svg
 {
     width: 60px;
     overflow:hidden;
@@ -74,7 +74,7 @@ svg
     text-align: right;
 }
 
-ul
+#toad_compare_report ul
 {
     margin: 0px;
     padding: 0px;
@@ -291,7 +291,7 @@ line.highlighted
 /* SVG specific */
 /* ---------------------------------------- */
 
-svg{
+#toad_compare_report svg{
     shape-rendering:auto;
 }
 .linePath{
