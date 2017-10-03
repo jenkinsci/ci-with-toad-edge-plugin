@@ -37,26 +37,50 @@
     color: #000;
     font-weight: normal;
     list-style-type: none;
-    padding-left: 20px;
+    line-height: 20px;
+}
+
+.sideItem .flagged {
+	width: 20px;
+	height: 20px;
+	vertical-align: middle;
+	display: inline-block;
+	background: url(img/compare-important.png) 0px 2px no-repeat;
 }
 
 .statusDiff
 {
+	width: 20px;
+	display: inline-block;
+	height: 20px;
+	vertical-align: middle;
     background: url(img/compare-status-different.png) 0px 2px no-repeat;
 }
 
 .statusSourceOnly
 {
+	width: 20px;
+	display: inline-block;
+	height: 20px;
+	vertical-align: middle;
     background: url(img/compare-status-only-in-source.png) 0px 2px no-repeat;
 }
 
 .statusTargetOnly
 {
+	width: 20px;
+	display: inline-block;
+	height: 20px;
+	vertical-align: middle;
     background: url(img/compare-status-only-in-target.png) 0px 2px no-repeat;
 }
 
 .statusMapped
 {
+	width: 20px;
+	display: inline-block;
+	height: 20px;
+	vertical-align: middle;
 	background: url(img/compare-status-mapped.png) 0px 2px no-repeat;
 }
 
@@ -67,8 +91,9 @@
     display: block;
     border-radius: 4px;
     padding: 1px 4px;
-    margin: 2px;
     border: 1px solid transparent;
+    display: inline-block;
+	vertical-align: middle;
 }
 
 .link:hover
@@ -84,8 +109,9 @@
     display: block;
     border-radius: 4px;
     padding: 1px 4px;
-    margin: 2px;
     border: 1px solid transparent;
+    display: inline-block;
+	vertical-align: middle;
 }
 
 .leftNavig
@@ -93,6 +119,10 @@
     overflow: auto;
     padding: 10px 10px 0px 10px;
     margin: 0px;
+}
+
+.leftNavig ul {
+	width: 150%;
 }
 
 /* main navigation */
