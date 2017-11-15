@@ -9,7 +9,7 @@
 		<relativePath />
 	</parent>
 	<artifactId>ci-with-toad-edge</artifactId>
-	<version>1.2-SNAPSHOT</version>
+	<version>1.2</version>
 	<packaging>hpi</packaging>
 
 	<properties>
@@ -61,7 +61,7 @@
 		<connection>scm:git:ssh://github.com/jenkinsci/ci-with-toad-edge-plugin.git</connection>
 		<developerConnection>scm:git:ssh://git@github.com/jenkinsci/ci-with-toad-edge-plugin.git</developerConnection>
 		<url>https://github.com/jenkinsci/ci-with-toad-edge-plugin</url>
-	  <tag>HEAD</tag>
+	  <tag>ci-with-toad-edge-1.2</tag>
   </scm>
 
 	<profiles>
