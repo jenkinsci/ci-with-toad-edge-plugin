@@ -54,6 +54,7 @@ import hudson.model.BuildListener;
 import hudson.tasks.BuildStepDescriptor;
 import hudson.tasks.Builder;
 import hudson.util.FormValidation;
+import hudson.util.ListBoxModel;
 
 /**
  * Builder implementation used to define "Create baseline" build step.
@@ -64,15 +65,17 @@ public class CreateBaselineBuilder extends Builder {
 
 	private String outputFile;
 	private String inputFileOrFolder;
+	private String databaseSystem;
 	private static final String INPUT = "INPUT";
 	private static final String TMP_OUTPUT = "TMP_OUTPUT";
 
 	// Fields in config.jelly must match the parameter names in the
 	// "DataBoundConstructor"
 	@DataBoundConstructor
-	public CreateBaselineBuilder(String outputFile, String inputFileOrFolder) {
+	public CreateBaselineBuilder(String outputFile, String inputFileOrFolder, String databaseSystem) {
 		this.outputFile = outputFile;
 		this.inputFileOrFolder = inputFileOrFolder;
+		this.databaseSystem = databaseSystem;
 	}
 
 	/**
@@ -87,6 +90,14 @@ public class CreateBaselineBuilder extends Builder {
 	 */
 	public String getInputFileOrFolder() {
 		return inputFileOrFolder;
+	}
+	
+	/**
+	 * 
+	 * @return Database system this automation step works with.
+	 */
+	public String getDatabaseSystem() {
+		return databaseSystem;
 	}
 	
 	private FilePath getTmpInput(AbstractBuild<?, ?> build) throws IOException, InterruptedException {
@@ -112,6 +123,7 @@ public class CreateBaselineBuilder extends Builder {
 		arguments.put("-in",
 				getTmpInput(build).toURI().getPath());
 		arguments.put("-out", getTmpOutput(build).toURI().getPath());
+		arguments.put("-database_system", getDatabaseSystem());
 		arguments.put("-baseline", "");
 
 		boolean result = (ProcessLauncher.exec(arguments, build, launcher, listener) == 0);
@@ -196,6 +208,15 @@ public class CreateBaselineBuilder extends Builder {
 			load();
 		}
 
+		public ListBoxModel doFillDatabaseSystemItems() {
+		    ListBoxModel items = new ListBoxModel();
+		    
+		    for (DatabaseSystem s : DatabaseSystem.values()) {
+		        items.add(s.getDisplayName(), s.name());
+		    }
+		    return items;
+		}
+		
 		/**
 		 * Performs on-the-fly validation of the form field 'outputFile'.
 		 *

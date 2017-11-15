@@ -35,7 +35,6 @@
 
 package ci.with.toad.edge;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -56,6 +55,7 @@ import hudson.model.BuildListener;
 import hudson.tasks.BuildStepDescriptor;
 import hudson.tasks.Builder;
 import hudson.util.FormValidation;
+import hudson.util.ListBoxModel;
 
 /**
  * Builder implementation used to define "Run Compare" build step.
@@ -68,6 +68,7 @@ public class CompareBuilder extends Builder {
 	private String srcInputFileOrFolder;
 	private String tgtInputFileOrFolder;
 	private String configFile;
+	private String databaseSystem;
 	private static final String SOURCE = "IN_SOURCE";
 	private static final String TARGET = "IN_TARGET";
 	private static final String CONFIG = "CONFIG";
@@ -77,11 +78,12 @@ public class CompareBuilder extends Builder {
 	// "DataBoundConstructor"
 	@DataBoundConstructor
 	public CompareBuilder(String outputFolder, String srcInputType, String tgtInputType, String srcInputFileOrFolder,
-			String tgtInputFileOrFolder, String configFile) {
+			String tgtInputFileOrFolder, String configFile, String databaseSystem) {
 		this.outputFolder = outputFolder;
 		this.srcInputFileOrFolder = srcInputFileOrFolder;
 		this.tgtInputFileOrFolder = tgtInputFileOrFolder;
 		this.configFile = configFile;
+		this.databaseSystem = databaseSystem;
 	}
 
 	/**
@@ -114,6 +116,14 @@ public class CompareBuilder extends Builder {
 	 */
 	public String getConfigFile() {
 		return configFile;
+	}
+	
+	/**
+	 * 
+	 * @return Database system this automation step works with.
+	 */
+	public String getDatabaseSystem() {
+		return databaseSystem;
 	}
 
 	private FilePath getTmpInSource(AbstractBuild<?, ?> build) throws IOException, InterruptedException {
@@ -158,6 +168,7 @@ public class CompareBuilder extends Builder {
 		if (configFile != null && !configFile.isEmpty()) {
 			arguments.put("-settings", getTmpConfig(build).toURI().getPath());
 		}
+		arguments.put("-database_system", getDatabaseSystem());
 		arguments.put("-compare", "");
 
 		boolean result = (ProcessLauncher.exec(arguments, build, launcher, listener) == 0);
@@ -313,6 +324,15 @@ public class CompareBuilder extends Builder {
 		 */
 		public CompareBuilderDescriptor() {
 			load();
+		}
+		
+		public ListBoxModel doFillDatabaseSystemItems() {
+		    ListBoxModel items = new ListBoxModel();
+		    
+		    for (DatabaseSystem s : DatabaseSystem.values()) {
+		        items.add(s.getDisplayName(), s.name());
+		    }
+		    return items;
 		}
 
 		/**

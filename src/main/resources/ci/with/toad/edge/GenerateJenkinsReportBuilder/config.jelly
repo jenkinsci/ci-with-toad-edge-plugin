@@ -4,4 +4,7 @@
 	<f:entry title="Input folder: " field="inputFolder">
 	  <f:textbox  default=""/>
 	</f:entry>
+	<f:entry field="databaseSystem" title="Database system">
+	   <f:select />
+	</f:entry>  
 </j:jelly>

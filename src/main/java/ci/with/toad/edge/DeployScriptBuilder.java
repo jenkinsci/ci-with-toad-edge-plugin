@@ -52,6 +52,7 @@ import hudson.model.BuildListener;
 import hudson.tasks.BuildStepDescriptor;
 import hudson.tasks.Builder;
 import hudson.util.FormValidation;
+import hudson.util.ListBoxModel;
 
 /**
  * Builder implementation used to define "Deploy script" build step.
@@ -62,15 +63,17 @@ public class DeployScriptBuilder extends Builder {
 
 	private String out;
 	private String in;
+	private String databaseSystem;
 	private static final String IN = "IN";
 	private static final String OUT = "OUT";
 
 	// Fields in config.jelly must match the parameter names in the
 	// "DataBoundConstructor"
 	@DataBoundConstructor
-	public DeployScriptBuilder(String out, String in) {
+	public DeployScriptBuilder(String out, String in, String databaseSystem) {
 		this.out = out;
 		this.in = in;
+		this.databaseSystem = databaseSystem;
 	}
 
 	/**
@@ -87,6 +90,14 @@ public class DeployScriptBuilder extends Builder {
 	 */
 	public String getIn() {
 		return in;
+	}
+	
+	/**
+	 * 
+	 * @return Database system this automation step works with.
+	 */
+	public String getDatabaseSystem() {
+		return databaseSystem;
 	}
 
 	private FilePath getTmpIn(AbstractBuild<?, ?> build) {
@@ -108,6 +119,7 @@ public class DeployScriptBuilder extends Builder {
 		Map<String, String> arguments = new HashMap<>();
 		arguments.put("-in", getTmpIn(build).toURI().getPath());
 		arguments.put("-out", getTmpOut(build).toURI().getPath());
+		arguments.put("-database_system", getDatabaseSystem());
 		arguments.put("-deploy", "");
 
 		boolean result = (ProcessLauncher.exec(arguments, build, launcher, listener) == 0);
@@ -179,6 +191,15 @@ public class DeployScriptBuilder extends Builder {
 		 */
 		public ToadBuilderDescriptor() {
 			load();
+		}
+		
+		public ListBoxModel doFillDatabaseSystemItems() {
+		    ListBoxModel items = new ListBoxModel();
+		    
+		    for (DatabaseSystem s : DatabaseSystem.values()) {
+		        items.add(s.getDisplayName(), s.name());
+		    }
+		    return items;
 		}
 
 		/**

@@ -52,6 +52,7 @@ import hudson.model.BuildListener;
 import hudson.tasks.BuildStepDescriptor;
 import hudson.tasks.Builder;
 import hudson.util.FormValidation;
+import hudson.util.ListBoxModel;
 
 /**
  * Builder implementation used to define "Generate Standalone Report" build step.
@@ -64,13 +65,15 @@ public class GenerateStandaloneReportBuilder extends Builder {
 	private String OUTPUT = "TMP_OUTPUT";
 	private String INPUT = "TMP_INPUT";
 	private String inputFolder;
+	private String databaseSystem;
 
 	// Fields in config.jelly must match the parameter names in the
 	// "DataBoundConstructor"
 	@DataBoundConstructor
-	public GenerateStandaloneReportBuilder(String inputFolder, String outputFolder) {
+	public GenerateStandaloneReportBuilder(String inputFolder, String outputFolder, String databaseSystem) {
 		this.inputFolder = inputFolder;
 		this.outputFolder = outputFolder;
+		this.databaseSystem = databaseSystem;
 	}
 	
 	/**
@@ -94,6 +97,14 @@ public class GenerateStandaloneReportBuilder extends Builder {
 	private FilePath getTmpOut(AbstractBuild<?, ?> build) {
 		return new FilePath(build.getWorkspace(), OUTPUT + build.number);
 	}
+	
+	/**
+	 * 
+	 * @return Database system this automation step works with.
+	 */
+	public String getDatabaseSystem() {
+		return databaseSystem;
+	}
 
 	@Override
 	public boolean perform(AbstractBuild<?, ?> build, Launcher launcher, BuildListener listener) throws IOException, InterruptedException {
@@ -108,6 +119,7 @@ public class GenerateStandaloneReportBuilder extends Builder {
 		Map<String, String> arguments = new HashMap<>();
 		arguments.put("-out", tmpOutput.toURI().getPath());
 		arguments.put("-in", getTmpIn(build).toURI().getPath());
+		arguments.put("-database_system", getDatabaseSystem());
 		arguments.put("-report", "");
 		arguments.put("-type", "STANDALONE");
 
@@ -175,6 +187,15 @@ public class GenerateStandaloneReportBuilder extends Builder {
 		 */
 		public GenerateReportBuilderDescriptor() {
 			load();
+		}
+		
+		public ListBoxModel doFillDatabaseSystemItems() {
+		    ListBoxModel items = new ListBoxModel();
+		    
+		    for (DatabaseSystem s : DatabaseSystem.values()) {
+		        items.add(s.getDisplayName(), s.name());
+		    }
+		    return items;
 		}
 
 		/**

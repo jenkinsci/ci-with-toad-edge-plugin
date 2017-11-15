@@ -54,6 +54,7 @@ import hudson.model.Run;
 import hudson.tasks.BuildStepDescriptor;
 import hudson.tasks.Builder;
 import hudson.util.FormValidation;
+import hudson.util.ListBoxModel;
 
 /**
  * Builder implementation used to define "Generate Report" build step.
@@ -65,12 +66,14 @@ public class GenerateJenkinsReportBuilder extends Builder {
 	private String OUTPUT = "JENKINS_REPORT";
 	private String INPUT = "TMP_INPUT";
 	private String inputFolder;
+	private String databaseSystem;
 
 	// Fields in config.jelly must match the parameter names in the
 	// "DataBoundConstructor"
 	@DataBoundConstructor
-	public GenerateJenkinsReportBuilder(String inputFolder) {
+	public GenerateJenkinsReportBuilder(String inputFolder, String databaseSystem) {
 		this.inputFolder = inputFolder;
+		this.databaseSystem = databaseSystem;
 	}
 
 	/**
@@ -92,6 +95,14 @@ public class GenerateJenkinsReportBuilder extends Builder {
 	private FilePath getTmpOut(AbstractBuild<?, ?> build) {
 		return new FilePath(build.getWorkspace(), OUTPUT + build.number);
 	}
+	
+	/**
+	 * 
+	 * @return Database system this automation step works with.
+	 */
+	public String getDatabaseSystem() {
+		return databaseSystem;
+	}
 
 	@Override
 	public boolean perform(AbstractBuild<?, ?> build, Launcher launcher, BuildListener listener)
@@ -107,6 +118,7 @@ public class GenerateJenkinsReportBuilder extends Builder {
 		Map<String, String> arguments = new HashMap<>();
 		arguments.put("-out", tmpOutput.toURI().getPath());
 		arguments.put("-in", getTmpIn(build).toURI().getPath());
+		arguments.put("-database_system", getDatabaseSystem());
 		arguments.put("-report", "");
 		arguments.put("-type", "JENKINS");
 
@@ -194,6 +206,15 @@ public class GenerateJenkinsReportBuilder extends Builder {
 			load();
 		}
 
+		public ListBoxModel doFillDatabaseSystemItems() {
+		    ListBoxModel items = new ListBoxModel();
+		    
+		    for (DatabaseSystem s : DatabaseSystem.values()) {
+		        items.add(s.getDisplayName(), s.name());
+		    }
+		    return items;
+		}
+		
 		/**
 		 * Performs on-the-fly validation of the form field 'inputFile'.
 		 *

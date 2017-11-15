@@ -52,6 +52,7 @@ import hudson.model.BuildListener;
 import hudson.tasks.BuildStepDescriptor;
 import hudson.tasks.Builder;
 import hudson.util.FormValidation;
+import hudson.util.ListBoxModel;
 
 /**
  * Builder implementation used to define "Generate change SQL script" build step.
@@ -62,15 +63,17 @@ public class GenerateChangeScriptBuilder extends Builder {
 
 	private String in;
 	private String out;
+	private String databaseSystem;
 	private static final String INPUT = "INPUT";
 	private static final String OUTPUT = "OUTPUT";
 	
 	// Fields in config.jelly must match the parameter names in the
 	// "DataBoundConstructor"
 	@DataBoundConstructor
-	public GenerateChangeScriptBuilder(String in, String out) {
+	public GenerateChangeScriptBuilder(String in, String out, String databaseSystem) {
 		this.in = in;
 		this.out = out;
+		this.databaseSystem = databaseSystem;
 	}
 
 	/**
@@ -85,6 +88,14 @@ public class GenerateChangeScriptBuilder extends Builder {
 	 */
 	public String getIn() {
 		return in;
+	}
+	
+	/**
+	 * 
+	 * @return Database system this automation step works with.
+	 */
+	public String getDatabaseSystem() {
+		return databaseSystem;
 	}
 	
 	private FilePath getTmpIn(AbstractBuild<?, ?> build) {
@@ -106,6 +117,7 @@ public class GenerateChangeScriptBuilder extends Builder {
 		arguments.put("-in",
 				getTmpIn(build).toURI().getPath());
 		arguments.put("-out", getTmpOut(build).toURI().getPath());
+		arguments.put("-database_system", getDatabaseSystem());
 		arguments.put("-sql_change", "");
 
 		boolean result = (ProcessLauncher.exec(arguments, build, launcher, listener) == 0);
@@ -168,6 +180,15 @@ public class GenerateChangeScriptBuilder extends Builder {
 		 */
 		public ToadBuilderDescriptor() {
 			load();
+		}
+		
+		public ListBoxModel doFillDatabaseSystemItems() {
+		    ListBoxModel items = new ListBoxModel();
+		    
+		    for (DatabaseSystem s : DatabaseSystem.values()) {
+		        items.add(s.getDisplayName(), s.name());
+		    }
+		    return items;
 		}
 
 		/**
