@@ -63,17 +63,15 @@ public class GenerateChangeScriptBuilder extends Builder {
 
 	private String in;
 	private String out;
-	private String databaseSystem;
 	private static final String INPUT = "INPUT";
 	private static final String OUTPUT = "OUTPUT";
 	
 	// Fields in config.jelly must match the parameter names in the
 	// "DataBoundConstructor"
 	@DataBoundConstructor
-	public GenerateChangeScriptBuilder(String in, String out, String databaseSystem) {
+	public GenerateChangeScriptBuilder(String in, String out) {
 		this.in = in;
 		this.out = out;
-		this.databaseSystem = databaseSystem;
 	}
 
 	/**
@@ -88,14 +86,6 @@ public class GenerateChangeScriptBuilder extends Builder {
 	 */
 	public String getIn() {
 		return in;
-	}
-	
-	/**
-	 * 
-	 * @return Database system this automation step works with.
-	 */
-	public String getDatabaseSystem() {
-		return databaseSystem;
 	}
 	
 	private FilePath getTmpIn(AbstractBuild<?, ?> build) {
@@ -117,7 +107,6 @@ public class GenerateChangeScriptBuilder extends Builder {
 		arguments.put("-in",
 				getTmpIn(build).toURI().getPath());
 		arguments.put("-out", getTmpOut(build).toURI().getPath());
-		arguments.put("-database_system", getDatabaseSystem());
 		arguments.put("-sql_change", "");
 
 		boolean result = (ProcessLauncher.exec(arguments, build, launcher, listener) == 0);

@@ -7,7 +7,4 @@
 	<f:entry title="Output file: " field="outputFile">
 	  <f:textbox default=""/>
 	</f:entry> 
-	<f:entry field="databaseSystem" title="Database system">
-	   <f:select />
-	</f:entry>    
 </j:jelly>

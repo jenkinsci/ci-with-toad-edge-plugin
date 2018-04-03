@@ -68,7 +68,6 @@ public class CompareBuilder extends Builder {
 	private String srcInputFileOrFolder;
 	private String tgtInputFileOrFolder;
 	private String configFile;
-	private String databaseSystem;
 	private static final String SOURCE = "IN_SOURCE";
 	private static final String TARGET = "IN_TARGET";
 	private static final String CONFIG = "CONFIG";
@@ -78,12 +77,11 @@ public class CompareBuilder extends Builder {
 	// "DataBoundConstructor"
 	@DataBoundConstructor
 	public CompareBuilder(String outputFolder, String srcInputType, String tgtInputType, String srcInputFileOrFolder,
-			String tgtInputFileOrFolder, String configFile, String databaseSystem) {
+			String tgtInputFileOrFolder, String configFile) {
 		this.outputFolder = outputFolder;
 		this.srcInputFileOrFolder = srcInputFileOrFolder;
 		this.tgtInputFileOrFolder = tgtInputFileOrFolder;
 		this.configFile = configFile;
-		this.databaseSystem = databaseSystem;
 	}
 
 	/**
@@ -116,14 +114,6 @@ public class CompareBuilder extends Builder {
 	 */
 	public String getConfigFile() {
 		return configFile;
-	}
-	
-	/**
-	 * 
-	 * @return Database system this automation step works with.
-	 */
-	public String getDatabaseSystem() {
-		return databaseSystem;
 	}
 
 	private FilePath getTmpInSource(AbstractBuild<?, ?> build) throws IOException, InterruptedException {
@@ -168,7 +158,6 @@ public class CompareBuilder extends Builder {
 		if (configFile != null && !configFile.isEmpty()) {
 			arguments.put("-settings", getTmpConfig(build).toURI().getPath());
 		}
-		arguments.put("-database_system", getDatabaseSystem());
 		arguments.put("-compare", "");
 
 		boolean result = (ProcessLauncher.exec(arguments, build, launcher, listener) == 0);

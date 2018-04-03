@@ -65,17 +65,15 @@ public class CreateBaselineBuilder extends Builder {
 
 	private String outputFile;
 	private String inputFileOrFolder;
-	private String databaseSystem;
 	private static final String INPUT = "INPUT";
 	private static final String TMP_OUTPUT = "TMP_OUTPUT";
 
 	// Fields in config.jelly must match the parameter names in the
 	// "DataBoundConstructor"
 	@DataBoundConstructor
-	public CreateBaselineBuilder(String outputFile, String inputFileOrFolder, String databaseSystem) {
+	public CreateBaselineBuilder(String outputFile, String inputFileOrFolder) {
 		this.outputFile = outputFile;
 		this.inputFileOrFolder = inputFileOrFolder;
-		this.databaseSystem = databaseSystem;
 	}
 
 	/**
@@ -90,14 +88,6 @@ public class CreateBaselineBuilder extends Builder {
 	 */
 	public String getInputFileOrFolder() {
 		return inputFileOrFolder;
-	}
-	
-	/**
-	 * 
-	 * @return Database system this automation step works with.
-	 */
-	public String getDatabaseSystem() {
-		return databaseSystem;
 	}
 	
 	private FilePath getTmpInput(AbstractBuild<?, ?> build) throws IOException, InterruptedException {
@@ -123,7 +113,6 @@ public class CreateBaselineBuilder extends Builder {
 		arguments.put("-in",
 				getTmpInput(build).toURI().getPath());
 		arguments.put("-out", getTmpOutput(build).toURI().getPath());
-		arguments.put("-database_system", getDatabaseSystem());
 		arguments.put("-baseline", "");
 
 		boolean result = (ProcessLauncher.exec(arguments, build, launcher, listener) == 0);

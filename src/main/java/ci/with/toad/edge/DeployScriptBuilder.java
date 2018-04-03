@@ -63,17 +63,15 @@ public class DeployScriptBuilder extends Builder {
 
 	private String out;
 	private String in;
-	private String databaseSystem;
 	private static final String IN = "IN";
 	private static final String OUT = "OUT";
 
 	// Fields in config.jelly must match the parameter names in the
 	// "DataBoundConstructor"
 	@DataBoundConstructor
-	public DeployScriptBuilder(String out, String in, String databaseSystem) {
+	public DeployScriptBuilder(String out, String in) {
 		this.out = out;
 		this.in = in;
-		this.databaseSystem = databaseSystem;
 	}
 
 	/**
@@ -92,13 +90,6 @@ public class DeployScriptBuilder extends Builder {
 		return in;
 	}
 	
-	/**
-	 * 
-	 * @return Database system this automation step works with.
-	 */
-	public String getDatabaseSystem() {
-		return databaseSystem;
-	}
 
 	private FilePath getTmpIn(AbstractBuild<?, ?> build) {
 		return new FilePath(build.getWorkspace(), IN + build.number);
@@ -119,7 +110,6 @@ public class DeployScriptBuilder extends Builder {
 		Map<String, String> arguments = new HashMap<>();
 		arguments.put("-in", getTmpIn(build).toURI().getPath());
 		arguments.put("-out", getTmpOut(build).toURI().getPath());
-		arguments.put("-database_system", getDatabaseSystem());
 		arguments.put("-deploy", "");
 
 		boolean result = (ProcessLauncher.exec(arguments, build, launcher, listener) == 0);

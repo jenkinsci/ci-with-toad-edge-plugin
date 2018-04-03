@@ -66,14 +66,12 @@ public class GenerateJenkinsReportBuilder extends Builder {
 	private String OUTPUT = "JENKINS_REPORT";
 	private String INPUT = "TMP_INPUT";
 	private String inputFolder;
-	private String databaseSystem;
 
 	// Fields in config.jelly must match the parameter names in the
 	// "DataBoundConstructor"
 	@DataBoundConstructor
-	public GenerateJenkinsReportBuilder(String inputFolder, String databaseSystem) {
+	public GenerateJenkinsReportBuilder(String inputFolder) {
 		this.inputFolder = inputFolder;
-		this.databaseSystem = databaseSystem;
 	}
 
 	/**
@@ -96,13 +94,6 @@ public class GenerateJenkinsReportBuilder extends Builder {
 		return new FilePath(build.getWorkspace(), OUTPUT + build.number);
 	}
 	
-	/**
-	 * 
-	 * @return Database system this automation step works with.
-	 */
-	public String getDatabaseSystem() {
-		return databaseSystem;
-	}
 
 	@Override
 	public boolean perform(AbstractBuild<?, ?> build, Launcher launcher, BuildListener listener)
@@ -118,7 +109,6 @@ public class GenerateJenkinsReportBuilder extends Builder {
 		Map<String, String> arguments = new HashMap<>();
 		arguments.put("-out", tmpOutput.toURI().getPath());
 		arguments.put("-in", getTmpIn(build).toURI().getPath());
-		arguments.put("-database_system", getDatabaseSystem());
 		arguments.put("-report", "");
 		arguments.put("-type", "JENKINS");
 

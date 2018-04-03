@@ -65,17 +65,15 @@ public class GenerateCreateScriptBuilder extends Builder {
 
 	private String outputFile;
 	private String inputFileOrFolder;
-	private String databaseSystem;
 	private static final String INPUT = "INPUT";
 	private static final String TMP_OUTPUT = "TMP_OUTPUT";
 
 	// Fields in config.jelly must match the parameter names in the
 	// "DataBoundConstructor"
 	@DataBoundConstructor
-	public GenerateCreateScriptBuilder(String outputFile, String inputFileOrFolder, String databaseSystem) {
+	public GenerateCreateScriptBuilder(String outputFile, String inputFileOrFolder) {
 		this.outputFile = outputFile;
 		this.inputFileOrFolder = inputFileOrFolder;
-		this.databaseSystem = databaseSystem;
 	}
 
 	/**
@@ -92,13 +90,6 @@ public class GenerateCreateScriptBuilder extends Builder {
 		return inputFileOrFolder;
 	}
 	
-	/**
-	 * 
-	 * @return Database system this automation step works with.
-	 */
-	public String getDatabaseSystem() {
-		return databaseSystem;
-	}
 	
 	private FilePath getTmpInput(AbstractBuild<?, ?> build) throws IOException, InterruptedException {
 		FilePath input = FileUtils.getFilePath(build, inputFileOrFolder);
@@ -123,7 +114,6 @@ public class GenerateCreateScriptBuilder extends Builder {
 		arguments.put("-in",
 				getTmpInput(build).toURI().getPath());
 		arguments.put("-out", getTmpOutput(build).toURI().getPath());
-		arguments.put("-database_system", getDatabaseSystem());
 		arguments.put("-sql_create", "");
 
 		boolean result = (ProcessLauncher.exec(arguments, build, launcher, listener) == 0);
