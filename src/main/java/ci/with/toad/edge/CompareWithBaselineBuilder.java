@@ -1,26 +1,21 @@
 /*
  * Continuous Integration with Toad Edge License Agreement
- * Version 1.0
- * Copyright 2017 Quest Software Inc.
+ * Version 2.0
+ * Copyright 2021 Quest Software Inc.
  * ALL RIGHTS RESERVED.
 
  * Redistribution and use in source and binary forms, with or without modification, are permitted 
  * provided that the following conditions are met:
  *
  *	1) Redistributions of source code must retain the complete text of this license. 
- *	
- *	2) Redistributions in binary form must reproduce the above copyright notice, this list of 
- *	conditions and the following disclaimer in the online product documentation and/or other 
- *	materials provided with the distribution. 
  *
- *	3) Neither the name of Quest Software nor the names of subsequent contributors may be 
+ *	2) Neither the name of Quest Software nor the names of subsequent contributors may be 
  *	used to endorse or promote products derived from this software without specific prior 
- *	written permission. 
+ *  written permission.  
  *
- *	4) THIS LICENSE DOES NOT INCLUDE A TRADEMARK LICENSE to use Quest Software 
- *	trademarks, including but not limited to Quest, Quest Software, Toad or Toad Edge.  You 
- * 	may use and modify this component, but your modifications must not include additional use 
- *	of Quest Software marks beyond the name of this component and its license.
+ *  3) Redistributions in binary form must reproduce the above copyright notice, this list of 
+ *	conditions and the following disclaimer in the online product documentation and/or other
+ *	materials provided with the distribution.
  *
  * THIS SOFTWARE IS PROVIDED BY QUEST SOFTWARE INC. AND CONTRIBUTORS ``AS IS'' AND ANY 
  * EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF 

@@ -1,26 +1,31 @@
 /*
- * QUEST SOFTWARE PROPRIETARY INFORMATION
- *
- * This software is confidential.  Quest Software Inc., or one of its
- * subsidiaries, has supplied this software to you under terms of a
- * license agreement, nondisclosure agreement or both.
- *
- * You may not copy, disclose, or use this software except in accordance with
- * those terms.
- *
- *
- * Copyright 2017 Quest Software Inc.
+ * Continuous Integration with Toad Edge License Agreement
+ * Version 2.0
+ * Copyright 2021 Quest Software Inc.
  * ALL RIGHTS RESERVED.
+
+ * Redistribution and use in source and binary forms, with or without modification, are permitted 
+ * provided that the following conditions are met:
  *
- * QUEST SOFTWARE INC. MAKES NO REPRESENTATIONS OR
- * WARRANTIES ABOUT THE SUITABILITY OF THE SOFTWARE,
- * EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED
- * TO THE IMPLIED WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE, OR
- * NON-INFRINGEMENT.  QUEST SOFTWARE SHALL NOT BE
- * LIABLE FOR ANY DAMAGES SUFFERED BY LICENSEE
- * AS A RESULT OF USING, MODIFYING OR DISTRIBUTING
- * THIS SOFTWARE OR ITS DERIVATIVES.
+ *	1) Redistributions of source code must retain the complete text of this license. 
+ *
+ *	2) Neither the name of Quest Software nor the names of subsequent contributors may be 
+ *	used to endorse or promote products derived from this software without specific prior 
+ *  written permission.  
+ *
+ *  3) Redistributions in binary form must reproduce the above copyright notice, this list of 
+ *	conditions and the following disclaimer in the online product documentation and/or other
+ *	materials provided with the distribution.
+ *
+ * THIS SOFTWARE IS PROVIDED BY QUEST SOFTWARE INC. AND CONTRIBUTORS ``AS IS'' AND ANY 
+ * EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF 
+ * MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL 
+ * THE REGENTS OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+ * EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF 
+ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) 
+ * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, 
+ * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS 
+ * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 package ci.with.toad.edge;
 
