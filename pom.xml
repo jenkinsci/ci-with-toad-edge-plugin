@@ -35,6 +35,16 @@
 			<name>Petr Chudanic</name>
 			<email>petr.chudanic@quest.com</email>
 		</developer>
+		<developer>
+		    <id>mkumar_jenkins</id>
+		    <name>Mandeep Kumar</name>
+		    <email>mandeep.kumar@quest.com</email>
+		</developer>
+		<developer>
+		    <id>tmajumda</id>
+		    <name>Tanmay Majumdar</name>
+		    <email>tanmay.majumdar@quest.com</email>
+		</developer>
 	</developers>
 
 	<licenses>
