@@ -49,8 +49,8 @@
 
 	<licenses>
 		<license>
-			<name>Continuous Integration with Toad Edge License Agreement</name>
-			<url>https://github.com/QSFT/ci-with-toad-edge/blob/master/LICENSE</url>
+			<name>Apache License 2.0</name>
+			<url>https://www.apache.org/licenses/LICENSE-2.0</url>
 		</license>
 	</licenses>
 
