@@ -27,7 +27,7 @@
 
 	<name>Continuous Integration with Toad Edge</name>
 	<description>Allows users to automate database lifecycle management operations.</description>
-	<url>https://wiki.jenkins.io/display/JENKINS/Continuous+Integration+With+Toad+Edge+Plugin</url>
+	<url>https://github.com/jenkinsci/ci-with-toad-edge-plugin</url>
 
 	<developers>
 		<developer>
