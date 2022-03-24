@@ -87,6 +87,15 @@ public class DeployScriptBuilder extends Builder {
 		System.setOut(listener.getLogger());
 		System.setErr(listener.getLogger());
 
+		FormValidation checkValidation = FormValidationUtil.restrictLocation(in, build);
+		if( checkValidation != FormValidation.ok()) {
+			throw new Error(checkValidation.getMessage());
+		}
+		FormValidation checkValidationOut = FormValidationUtil.restrictLocation(out, build);
+		if(checkValidationOut != FormValidation.ok()) {
+			throw new Error(checkValidation.getMessage());
+		}
+
 		copyBuildFiles(build, listener);
 
 		Map<String, String> arguments = new HashMap<>();

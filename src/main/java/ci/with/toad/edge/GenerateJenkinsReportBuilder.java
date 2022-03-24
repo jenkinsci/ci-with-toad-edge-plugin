@@ -84,6 +84,11 @@ public class GenerateJenkinsReportBuilder extends Builder {
 		System.setOut(listener.getLogger());
 		System.setErr(listener.getLogger());
 
+		FormValidation checkValidation = FormValidationUtil.restrictLocation(inputFolder, build);
+		if(checkValidation != FormValidation.ok()) {
+			throw new Error(checkValidation.getMessage());
+		}
+
 		copyBuildFiles(build, listener);
 		FilePath tmpOutput = getTmpOut(build);
 		tmpOutput.mkdirs();

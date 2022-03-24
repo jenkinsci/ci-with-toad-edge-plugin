@@ -89,7 +89,12 @@ public class CreateSnapshotBuilder extends Builder {
 	public boolean perform(AbstractBuild<?, ?> build, Launcher launcher, BuildListener listener) throws IOException, InterruptedException {
 		System.setOut(listener.getLogger());
 		System.setErr(listener.getLogger());
-		
+
+		FormValidation checkValidation = FormValidationUtil.restrictLocation(inputFileOrFolder, build);
+		if( checkValidation != FormValidation.ok()) {
+			throw new Error(checkValidation.getMessage());
+		}
+
 		copyBuildFiles(build, listener);
 
 		Map<String, String> arguments = new HashMap<>();

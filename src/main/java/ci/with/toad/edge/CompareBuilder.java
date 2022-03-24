@@ -130,6 +130,19 @@ public class CompareBuilder extends Builder {
 		System.setOut(listener.getLogger());
 		System.setErr(listener.getLogger());
 
+		FormValidation checkValidation = FormValidationUtil.restrictLocation(srcInputFileOrFolder, build);
+		if(checkValidation != FormValidation.ok()) {
+			throw new Error(checkValidation.getMessage());
+		}
+		FormValidation checkValidationTarget = FormValidationUtil.restrictLocation(tgtInputFileOrFolder, build);
+		if(checkValidationTarget != FormValidation.ok()) {
+			throw new Error(checkValidationTarget.getMessage());
+		}
+		FormValidation checkValidationConfig=FormValidationUtil.restrictLocation(configFile, build);
+		if(checkValidationConfig != FormValidation.ok()){
+			throw new Error(checkValidationConfig.getMessage());
+		}
+
 		copyBuildFiles(build, listener);
 		ensureTmpOutputFolder(build, listener);
 
