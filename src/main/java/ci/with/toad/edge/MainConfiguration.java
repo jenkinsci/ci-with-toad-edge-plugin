@@ -18,6 +18,7 @@ package ci.with.toad.edge;
 
 import java.io.File;
 
+import jenkins.model.Jenkins;
 import org.jvnet.localizer.Localizable;
 import org.jvnet.localizer.ResourceBundleHolder;
 import org.kohsuke.stapler.QueryParameter;
@@ -83,6 +84,7 @@ public class MainConfiguration extends GlobalConfiguration {
 	 *         message will be displayed to the user.
 	 */
 	public FormValidation doCheckLibs(@QueryParameter String value) {
+		Jenkins.getInstance().checkPermission(Jenkins.ADMINISTER);
 		FormValidation emptyValidation = FormValidationUtil.doCheckEmptyValue(value, new Localizable(ResourceBundleHolder.get(MainConfiguration.class), "LibrariesFolder").toString());
 		if (emptyValidation != FormValidation.ok()) {
 			return emptyValidation;
