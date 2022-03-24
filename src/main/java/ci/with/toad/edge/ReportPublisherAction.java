@@ -27,6 +27,7 @@ import org.kohsuke.stapler.StaplerResponse;
 
 import hudson.FilePath;
 import hudson.model.Action;
+import hudson.model.DirectoryBrowserSupport;
 import hudson.model.Run;
 import jenkins.model.RunAction2;
 

@@ -74,3 +74,19 @@ http://support.quest.com/technical-documents/toad-edge/2.1/user-guide/continuous
 https://support.quest.com/technical-documents/toad-edge/2.2/user-guide/continuous-integration-and-delivery
 
 |===
+
+[[ContinuousIntegrationWithToadEdgePlugin-Documentation]]
+== Troubleshooting
+If you are having issues viewing Jenkins HTML comparison report, it could be due to your browser's Content Security Policy. You can check your browser console to confirm the same.
+Also, the reports will not get rendered if Jenkins's https://www.jenkins.io/doc/book/security/user-content/#resource-root-url[resource root url] is configured.
+
+To view Jenkins HTML reports, you would have to relax the CSP. This can be done by going to _Jenkins > Manage Jenkins > Script Console_
+
+*Execute this script to relax CSP:*
+
+`System.setProperty("hudson.model.DirectoryBrowserSupport.CSP", "default-src 'self'; script-src * 'self' 'unsafe-inline'; img-src 'self'; style-src 'self' 'unsafe-inline'; font-src * data:");`
+
+This will be reverted once Jenkins restarts
+
+_Please note that we would also suggest you to review https://www.jenkins.io/doc/book/security/configuring-content-security-policy/ and https://content-security-policy.com/ to understand the nature of CSP and the protection which it offers before changing CSP._
+
