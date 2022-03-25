@@ -80,6 +80,10 @@ https://support.quest.com/technical-documents/toad-edge/2.4/user-guide/continuou
 
 [[ContinuousIntegrationWithToadEdgePlugin-Documentation]]
 == Troubleshooting
+
+[[ContinuousIntegrationWithToadEdgePlugin-Documentation]]
+=== Jenkins HTML comparison report rendering issues
+
 If you are having issues viewing Jenkins HTML comparison report, it could be due to your browser's Content Security Policy. You can check your browser console to confirm the same.
 Also, the reports will not get rendered if Jenkins's https://www.jenkins.io/doc/book/security/user-content/#resource-root-url[resource root url] is configured.
 
@@ -93,3 +97,8 @@ This will be reverted once Jenkins restarts
 
 _Please note that we would also suggest you to review https://www.jenkins.io/doc/book/security/configuring-content-security-policy/ and https://content-security-policy.com/ to understand the nature of CSP and the protection which it offers before changing CSP._
 
+
+[[ContinuousIntegrationWithToadEdgePlugin-Documentation]]
+=== Input folder/file path restrictions during job configuration
+
+From plugin version 2.4, all folder and file paths should be inside the agent node where the job is running. Paths to master node and other remote nodes won't work.
