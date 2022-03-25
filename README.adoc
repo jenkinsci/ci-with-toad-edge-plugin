@@ -97,6 +97,8 @@ This will be reverted once Jenkins restarts
 
 _Please note that we would also suggest you to review https://www.jenkins.io/doc/book/security/configuring-content-security-policy/ and https://content-security-policy.com/ to understand the nature of CSP and the protection which it offers before changing CSP._
 
+However, if you are reluctant to relax your CSP. We would recommend you to generate only standalone HTML comparison report. These reports can be found inside your chosen output folder.
+
 
 [[ContinuousIntegrationWithToadEdgePlugin-Documentation]]
 === Input folder/file path restrictions during job configuration
