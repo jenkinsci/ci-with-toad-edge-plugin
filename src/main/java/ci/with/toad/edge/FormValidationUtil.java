@@ -63,7 +63,7 @@ public class FormValidationUtil {
 		if(workspaceDir.isRemote() != inputDir.isRemote()) {
            return FormValidation.error(String.format("Input folder: %s  needs to be in the job's agent node", inputDirLocation));
 		}
-		if(inputDirLocation.contains(workspaceDirLocation)) {
+		if((inputDirLocation.toLowerCase()).contains((workspaceDirLocation.toLowerCase()))) {
 			return FormValidation.ok();
 		}
 		return FormValidation.error(String.format("Specified folder or file (%s) should be inside project workspace directory",inputDirLocation));
