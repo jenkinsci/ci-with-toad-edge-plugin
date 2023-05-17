@@ -68,7 +68,7 @@ public class ProcessLauncher {
 		
 		ArgumentListBuilder arguments = new ArgumentListBuilder();
 		arguments.add(javaBin);
-		arguments.add("-jar");
+		arguments.add("--add-opens=java.base/java.util=ALL-UNNAMED --add-opens=java.base/java.lang=ALL-UNNAMED -jar");
 		arguments.add(exec);
 		arguments.add("-lib");
 		arguments.add(cliFolder + "/lib");
