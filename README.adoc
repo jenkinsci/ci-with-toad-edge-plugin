@@ -4,7 +4,7 @@
 [cols=",",options="header",]
 |===
 |Plugin version |Toad Edge^TM^ version
-|2.2, 2.3, 2.4, 2.5, 2.6, 2.7, 2.8|2.0.x, 2.1.x, 2.2.x, 2.3.x, 2.4.x, 2.5.x, 2.6.x, 2.7.x
+|2.2, 2.3, 2.4, 2.5, 2.6, 2.7, 2.8, 2.9|2.0.x, 2.1.x, 2.2.x, 2.3.x, 2.4.x, 2.5.x, 2.6.x, 2.7.x, 2.8.x
 |===
 
 [[ContinuousIntegrationWithToadEdgePlugin-Introduction]]
@@ -66,7 +66,7 @@ on Quest Software Inc. pages.
 |===
 |Plugin version |Documentation link
 
-|2.2, 2.3, 2.4, 2.5, 2.6, 2.7, 2.8 a|
+|2.2, 2.3, 2.4, 2.5, 2.6, 2.7, 2.8, 2.9 a|
 https://support.quest.com/technical-documents/toad-edge/2.2/user-guide/continuous-integration-and-delivery
 
 https://support.quest.com/technical-documents/toad-edge/2.3/user-guide/continuous-integration-and-delivery
@@ -76,6 +76,8 @@ https://support.quest.com/technical-documents/toad-edge/2.4/user-guide/continuou
 https://support.quest.com/technical-documents/toad-edge/2.6/user-guide/continuous-integration-and-delivery
 
 https://support.quest.com/technical-documents/toad-edge/2.7/user-guide/continuous-integration-and-delivery
+
+https://support.quest.com/technical-documents/toad-edge/2.8/user-guide/continuous-integration-and-delivery
 |===
 
 [[ContinuousIntegrationWithToadEdgePlugin-Documentation]]
