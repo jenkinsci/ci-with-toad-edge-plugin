@@ -45,6 +45,11 @@
 		    <name>Tanmay Majumdar</name>
 		    <email>tanmay.majumdar@quest.com</email>
 		</developer>
+		<developer>
+            <id>ddsouza_jenkins</id>
+            <name>Dashline D Souza</name>
+            <email>Dashline.Souza@quest.com</email>
+        </developer>
 	</developers>
 
 	<licenses>
