@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>org.jenkins-ci.plugins</groupId>
+		<artifactId>plugin</artifactId>
+		<version>2.11</version>
+		<relativePath />
+	</parent>
+	<artifactId>ci-with-toad-edge</artifactId>
+	<version>2.12-SNAPSHOT</version>
+	<packaging>hpi</packaging>
+
+	<properties>
+		<!-- Baseline Jenkins version you use to build the plugin. Users must have 
+			this version or newer to run. -->
+		<jenkins.version>1.625.3</jenkins.version>
+		<java.level>8</java.level>
+		<!-- Jenkins Test Harness version you use to test the plugin. -->
+		<!-- For Jenkins version >= 1.580.1 use JTH 2.x or higher. -->
+		<jenkins-test-harness.version>2.13</jenkins-test-harness.version>
+		<timestamp>${maven.build.timestamp}</timestamp>
+		<maven.build.timestamp.format>yyyy-MM-dd-HH-mm</maven.build.timestamp.format>
+
+	</properties>
+
+	<name>Continuous Integration with Toad Edge</name>
+	<description>Allows users to automate database lifecycle management operations.</description>
+	<url>https://github.com/jenkinsci/ci-with-toad-edge-plugin</url>
+
+	<developers>
+		<developer>
+			<id>pchudani</id>
+			<name>Petr Chudanic</name>
+			<email>petr.chudanic@quest.com</email>
+		</developer>
+		<developer>
+		    <id>mkumar_jenkins</id>
+		    <name>Mandeep Kumar</name>
+		    <email>mandeep.kumar@quest.com</email>
+		</developer>
+		<developer>
+		    <id>tmajumda</id>
+		    <name>Tanmay Majumdar</name>
+		    <email>tanmay.majumdar@quest.com</email>
+		</developer>
+		<developer>
+            <id>ddsouza_jenkins</id>
+            <name>Dashline D Souza</name>
+            <email>Dashline.Souza@quest.com</email>
+        </developer>
+	</developers>
+
+	<licenses>
+		<license>
+			<name>Apache License 2.0</name>
+			<url>https://www.apache.org/licenses/LICENSE-2.0</url>
+		</license>
+	</licenses>
+
+	<repositories>
+		<repository>
+			<id>repo.jenkins-ci.org</id>
+			<url>https://repo.jenkins-ci.org/public/</url>
+		</repository>
+	</repositories>
+	<pluginRepositories>
+		<pluginRepository>
+			<id>repo.jenkins-ci.org</id>
+			<url>https://repo.jenkins-ci.org/public/</url>
+		</pluginRepository>
+	</pluginRepositories>
+
+	<scm>
+		<connection>scm:git:ssh://github.com/jenkinsci/ci-with-toad-edge-plugin.git</connection>
+		<developerConnection>scm:git:ssh://git@github.com/jenkinsci/ci-with-toad-edge-plugin.git</developerConnection>
+		<url>https://github.com/jenkinsci/ci-with-toad-edge-plugin</url>
+	  <tag>ci-with-toad-edge-2.2</tag>
+  </scm>
+
+	<profiles>
+		<profile>
+			<id>store-result</id>
+			<build>
+				<plugins>
+					<plugin>
+						<artifactId>maven-resources-plugin</artifactId>
+						<version>2.7</version>
+						<executions>
+							<execution>
+								<id>copy-hpi-to-last-build</id>
+								<phase>install</phase>
+								<goals>
+									<goal>copy-resources</goal>
+								</goals>
+								<configuration>
+									<outputDirectory>${lastBuildDir}</outputDirectory>
+									<resources>
+										<resource>
+											<directory>target/</directory>
+											<includes>
+												<include>*.hpi</include>
+											</includes>
+
+										</resource>
+									</resources>
+								</configuration>
+							</execution>
+
+							<execution>
+								<id>copy-hpi-to-history</id>
+								<phase>install</phase>
+								<goals>
+									<goal>copy-resources</goal>
+								</goals>
+								<configuration>
+									<outputDirectory>${buildHistoryDir}/${timestamp}/</outputDirectory>
+									<resources>
+										<resource>
+											<directory>target/</directory>
+											<includes>
+												<include>*.hpi</include>
+											</includes>
+										</resource>
+									</resources>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+
+				</plugins>
+
+			</build>
+
+		</profile>
+	</profiles>
+
+</project>
+
